@@ -17,10 +17,10 @@ var crypto = require('crypto');
 const mysql = require('mysql')
 const util = require('util')
 var client = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Exocsn123!',
-    database: 'exo',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USERNAME || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_DATABASE || '',
 });
 client.query = util.promisify(client.query);
 client.query("SET SESSION wait_timeout = 604800");

