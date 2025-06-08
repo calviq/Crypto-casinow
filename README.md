@@ -9,6 +9,10 @@ Npm install
 php artisan migrate
 php artisan serve
 
+The Node.js server uses environment variables for database credentials.
+Set `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_DATABASE` in your
+environment before starting the server.
+
 detailed setup guide soon...
 
 
